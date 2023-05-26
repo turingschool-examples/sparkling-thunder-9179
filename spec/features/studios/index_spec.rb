@@ -20,24 +20,26 @@ RSpec.describe "the studios index" do
     visit "/studios"
   end
 
-  it "lists all the studios with their attributes" do
-    expect(page).to have_content("Name: #{@uni.name}")
-    expect(page).to have_content("Location: #{@uni.location}")
-    expect(page).to have_content("Title: #{@good.title}")
-    expect(page).to have_content("Year: #{@good.creation_year}")
-    expect(page).to have_content("Genre: #{@good.genre}")
+  describe "the studios index page" do 
+    it "lists all the studios with their attributes" do
+      expect(page).to have_content("Name: #{@uni.name}")
+      expect(page).to have_content("Location: #{@uni.location}")
+      expect(page).to have_content("Title: #{@good.title}")
+      expect(page).to have_content("Year: #{@good.creation_year}")
+      expect(page).to have_content("Genre: #{@good.genre}")
 
-    expect(page).to have_content("Name: #{@uni.name}")
-    expect(page).to have_content("Location: #{@uni.location}")
-    expect(page).to have_content("Title: #{@mib.title}")
-    expect(page).to have_content("Year: #{@mib.creation_year}")
-    expect(page).to have_content("Genre: #{@mib.genre}")
+      expect(page).to have_content("Name: #{@uni.name}")
+      expect(page).to have_content("Location: #{@uni.location}")
+      expect(page).to have_content("Title: #{@mib.title}")
+      expect(page).to have_content("Year: #{@mib.creation_year}")
+      expect(page).to have_content("Genre: #{@mib.genre}")
 
 
-    expect(page).to have_content("Name: #{@dis.name}")
-    expect(page).to have_content("Location: #{@dis.location}")
-    expect(page).to have_content("Title: #{@toy.title}")
-    expect(page).to have_content("Year: #{@toy.creation_year}")
-    expect(page).to have_content("Genre: #{@toy.genre}")
+      expect(page).to have_content("Name: #{@dis.name}")
+      expect(page).to have_content("Location: #{@dis.location}")
+      expect(page).to have_content("Title: #{@toy.title}")
+      expect(page).to have_content("Year: #{@toy.creation_year}")
+      expect(page).to have_content("Genre: #{@toy.genre}")
+    end
   end
 end
