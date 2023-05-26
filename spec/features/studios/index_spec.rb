@@ -37,7 +37,6 @@ RSpec.describe "/studios index page" do
       expect(page).to have_content("Title: #{movie_3.title}")
       expect(page).to have_content("Creation Year: #{movie_3.creation_year}")
       expect(page).to have_content("Genre: #{movie_3.genre}")
-      save_and_open_page
     end
   end
 end
