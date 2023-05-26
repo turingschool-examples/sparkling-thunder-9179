@@ -32,7 +32,26 @@ RSpec.describe "the movies show" do
       expect(page).to_not have_content("Actor: #{@will.name}")
       
       expect(@matt.name).to appear_before(@tom.name)
-      expect(page).to have_content("Average age: #{@good.average_actor_age.round}")
+      expect(page).to have_content("Average actors age: #{@good.average_actor_age.round}")
+    end
+  end
+
+  describe "the movies show form" do 
+    it "it renders a form to add an actor " do
+      expect(page).to have_content("Add an Actor")
+      expect(find("form")).to have_content("ID")
+      expect(page).to have_button("Submit")
+    end
+
+    it "it creates an actor " do
+      fill_in "ID", with: "#{@will.id}"
+      click_button "Submit"
+
+      expect(page).to have_current_path("/movies/#{@good.id}")
+      expect(page).to have_content("Actor: #{@will.name}")
+
+      expect(@will.name).to appear_before(@matt.name)
+      expect(@matt.name).to appear_before(@tom.name)
     end
   end
 end
