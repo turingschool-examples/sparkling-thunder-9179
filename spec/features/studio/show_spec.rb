@@ -18,7 +18,7 @@ RSpec.describe "the studio show page" do
     actor7 = movie4.actors.create!(name: "Actually McActor", age: 66)
 
     visit "/studios/#{studio1.id}"
-save_and_open_page
+
     expect(page).to have_content(studio1.name)
     expect(page).to have_content(studio1.location)
     expect(page).to_not have_content(studio2.name)

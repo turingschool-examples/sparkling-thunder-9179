@@ -8,4 +8,3 @@ class StudiosController < ApplicationController
     @actors = Studio.actors
   end
 end
-
