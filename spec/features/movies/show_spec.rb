@@ -10,14 +10,14 @@ RSpec.describe "Movie Show Page /movies/:id", type: :feature do
       visit "/movies/#{@movie_2.id}"
       
       expect(page).to have_content("#{@movie_2.title}'s Show Page")
-      expect(page).to have_content("Creation year: #{@movie_2.creation_year}")
+      expect(page).to have_content("Creation Year: #{@movie_2.creation_year}")
       expect(page).to have_content("Genre: #{@movie_2.genre}")
       expect(page).to_not have_content(@movie_3.title)
       
       visit "/movies/#{@movie_4.id}"
       
       expect(page).to have_content("#{@movie_4.title}'s Show Page")
-      expect(page).to have_content("Creation year: #{@movie_4.creation_year}")
+      expect(page).to have_content("Creation Year: #{@movie_4.creation_year}")
       expect(page).to have_content("Genre: #{@movie_4.genre}")
       expect(page).to_not have_content(@movie_3.title)
     end
