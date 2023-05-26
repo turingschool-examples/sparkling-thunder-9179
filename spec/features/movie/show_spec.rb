@@ -11,14 +11,14 @@ RSpec.describe "the movie show page" do
     actor3 = movie1.actors.create!(name: "Emma Watson", age: 33)
     actor4 = movie2.actors.create!(name: "Person Actress", age: 40)
     
-    visit "/movies#{movie1.id}"
+    visit "/movies/#{movie1.id}"
 
-    expect(page).to have_content(movie1.title)
-    expect(page).to have_content(movie1.creation_year)
-    expect(page).to have_content(movie1.genre)
+    expect(page).to have_content("Movie Title: #{movie1.title}")
+    expect(page).to have_content("Creation Year: #{movie1.creation_year}")
+    expect(page).to have_content("Genre: #{movie1.genre}")
     expect(actor3.name).to appear_before(actor1.name)
     expect(actor1.name).to appear_before(actor2.name)
-    expect(page).to have_content("54.67")
+    expect(page).to have_content("Average Age of Actors: 54.67")
     expect(page).to_not have_content(movie2.title)
     expect(page).to_not have_content(actor4.name)
   end
