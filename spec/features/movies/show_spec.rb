@@ -12,10 +12,12 @@ RSpec.describe '/movies/:id' do
     @ratatouille = @pixar.movies.create!(title: 'Ratatouille', creation_year: '2007', genre: 'comedy')
     @inside_out = @pixar.movies.create!(title: 'Inside Out', creation_year: '2015', genre: 'coming-of-age')
 
-    @lee = @when_bess_got_in_wrong.actors.create!(name: 'Lee Moran', age: 24)
-    @bess = @when_bess_got_in_wrong.actors.create!(name: 'Bess Meredyth', age: 22)
+    @lee = Actor.create!(name: 'Lee Moran', age: 24)
+    @bess = Actor.create!(name: 'Bess Meredyth', age: 22)
     
-    @patton = @ratatouille.actors.create!(name: 'Patton Oswalt', age: 54)
+    @patton = Actor.create!(name: 'Patton Oswalt', age: 54)
+
+    Actor
   end
 
   describe 'movie show page' do 
@@ -53,13 +55,43 @@ RSpec.describe '/movies/:id' do
 
     # User Story 3
     it 'does not display actors not in a movie' do 
-      visit "/movies/#{@when_bess_got_in_wrong.id}" do 
-        within("#actors") do 
+      visit "/movies/#{@when_bess_got_in_wrong.id}" 
+      within("#actors") do 
           expect(page).to_not have_content(@patton.name)
         end
-      end
+    end
+    
+    it 'does not display actors not in a movie' do 
+      visit "/movies/#{@when_bess_got_in_wrong.id}"
+
+      within ("#add-an-actor") do
+      expect(page).to have_button('Add an Actor')
+      expect(page).to have_field(:name)
+      expect(page).to have_field(:age)
+      fill_in(:name, with: 'Stella Adams')
+      fill_in(:age, with: 29)
+      click_button('Add an Actor')
+    end
+
+      expect(current_path).to eq("/movies/#{@when_bess_got_in_wrong.id}")
+
+      within("#actors") do 
+      expect(page).to have_content("Stella Adams")
+    end
+
+      expect(page).to have_content('Average Age of Actors: 25')
     end
   end
-
-  
 end
+  # Story 3
+  # Add an Actor to a Movie
+  
+  # As a user,
+  # When I visit a movie show page,
+  
+  # And I see a form to add an actor to this movie
+  # When I fill in the form with the ID of an actor that exists in the database
+  # And I click submit 
+  # Then I am redirected back to that movie's show page
+  # And I see the actor's name is now listed
+  # (You do not have to test for a sad path, for example if the id submitted is not an existing actor)
