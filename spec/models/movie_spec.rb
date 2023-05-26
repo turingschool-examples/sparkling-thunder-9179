@@ -31,7 +31,11 @@ RSpec.describe Movie, type: :model do
   describe "instance methods" do 
     it "av_actor_age" do 
       expect(@movie_1.av_actor_age).to eq(4.2)
-      expect(@movie_2.av_actor_age.round(2)).to eq(5.5)
+      expect(@movie_2.av_actor_age).to eq(5.5)
+    end
+
+    it "order_actor_name" do 
+      expect(@movie_1.order_actor_name).to eq([@actor_6, @actor_4, @actor_1, @actor_5, @actor_2])
     end
   end
 end
