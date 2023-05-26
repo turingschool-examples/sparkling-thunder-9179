@@ -18,9 +18,9 @@ RSpec.describe "Studio Index page /studios", type: :feature do
         expect(page).to have_content(@movie_1.genre)
       end
 
-      within "#studio_details_#{@studio_.id}" do
-        expect(page).to have_content("Studio Name: #{@studio_.name}")
-        expect(page).to have_content("Studio Location: #{@studio_.location}")
+      within "#studio_details_#{@studio_2.id}" do
+        expect(page).to have_content("Studio Name: #{@studio_2.name}")
+        expect(page).to have_content("Studio Location: #{@studio_2.location}")
         expect(page).to have_content("Movies:")
         expect(page).to have_content(@movie_3.title)
         expect(page).to have_content(@movie_3.creation_year)
