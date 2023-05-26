@@ -11,7 +11,7 @@ RSpec.describe "the studio index page" do
     movie4 = studio2.movies.create!(title: "D Movie", creation_year: "2012", genre: "family")
 
     visit "/studios"
-save_and_open_page
+
     expect(page).to have_content(studio1.name)
     expect(page).to have_content(studio1.location)
     expect(page).to have_content(studio2.name)
