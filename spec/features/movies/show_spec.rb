@@ -47,6 +47,10 @@ RSpec.describe "Movie Show Page" do
         expect(page).to_not have_content(ali.name)
         expect(page).to_not have_content(sandra.name)
       #end
+
+        expect(carrie.name).to appear_before(keanu.name)
+        expect(keanu.name).to appear_before(laurence.name)
+
       end
     end
   end
