@@ -6,7 +6,6 @@ RSpec.describe '/movies/:id' do
 
     @universal = Studio.create!(name: 'Universal Studios', location: 'Orlando')
 
-    @the_dawn_of_netta = @universal.movies.create!(title: 'The Dawn of Netta', creation_year: '1912', genre: 'silent drama')
     @when_bess_got_in_wrong = @universal.movies.create!(title: 'When Bess Got in Wrong', creation_year: '1914', genre: 'silent comedy')
 
     @ratatouille = @pixar.movies.create!(title: 'Ratatouille', creation_year: '2007', genre: 'comedy')
@@ -17,7 +16,8 @@ RSpec.describe '/movies/:id' do
     
     @patton = Actor.create!(name: 'Patton Oswalt', age: 54)
 
-    Actor
+    MovieActor.create(movie: @when_bess_got_in_wrong, actor: @lee)
+    MovieActor.create(movie: @when_bess_got_in_wrong, actor: @bess)
   end
 
   describe 'movie show page' do 
