@@ -48,12 +48,28 @@ RSpec.describe "Movies show page", type: :feature do
 # (You do not have to test for a sad path, for example if the id submitted is not an existing actor)
     it "doesn't display actors who aren't part of the movie" do
       visit "/movies/#{movie_1.id}"
-      save_and_open_page
+      # save_and_open_page
       expect(page).to_not have_content(actor_3.name)
       expect(page).to_not have_content(actor_4.name)
       expect(page).to_not have_content(actor_5.name)
       expect(page).to_not have_content(actor_6.name)
       expect(page).to have_content(actor_2.name)
+    end
+
+    it "displays a form to add an actor to the movie" do
+      visit "/movies/#{movie_1.id}"
+      save_and_open_page
+      expect(page).to have_content("Actor")
+      expect(page).to have_button("Add Actor")
+    end
+
+    it "fill form with id that exists, click submit, redirect back to show page" do
+      visit "/movies/#{movie_1.id}"
+      fill_in "actor_id", with: actor_2.id
+
+      click_button "Add Actor"
+      expect(current_path).to eq("/movies/#{movie_1.id}")
+
     end
   end
 end
