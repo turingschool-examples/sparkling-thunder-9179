@@ -25,14 +25,14 @@ RSpec.describe "studio show page", type: :feature do
   end
 
   it "displays the studio's name and location" do 
-    visit "/studios/#{@studio_1}"
-    
+    visit "/studios/#{@studio_1.id}"
+    save_and_open_page
     expect(page).to have_content("Name: #{@studio_1.name}")
     expect(page).to have_content("Location: #{@studio_1.location}")
   end
   
   it "displays a unique list of all actors that have worked at the studio" do 
-    visit "/studios/#{@studio_1}"
+    visit "/studios/#{@studio_1.id}"
 
     expect(page).to have_content("Actors that have worked here:")
     expect(page).to have_content("#{@actor_1.name}")
