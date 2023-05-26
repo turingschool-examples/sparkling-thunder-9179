@@ -44,14 +44,17 @@ RSpec.describe "the movies show" do
     end
 
     it "it creates an actor " do
+      expect(page).to_not have_content("Actor: #{@will.name}")
+
       fill_in "ID", with: "#{@will.id}"
       click_button "Submit"
-
+      
       expect(page).to have_current_path("/movies/#{@good.id}")
       expect(page).to have_content("Actor: #{@will.name}")
-
+      
       expect(@will.name).to appear_before(@matt.name)
       expect(@matt.name).to appear_before(@tom.name)
+
     end
   end
 end

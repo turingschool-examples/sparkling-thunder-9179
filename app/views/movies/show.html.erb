@@ -10,9 +10,9 @@
 
 <section>
 <h2> Add an Actor </h2>
-<%= form_with url: "/movies/#{@movie.id}", method: :post, local: true do |form| %>
-  <%= form.label :id, "ID" %>
-  <%= form.number_field :id %>
+<%= form_with url: "/movies/#{@movie.id}/actors", method: :post, local: true do |form| %>
+  <%= form.label :actor_id, "ID" %>
+  <%= form.text_field :actor_id %>
 
   <%= form.submit "Submit" %>
 <% end %>
