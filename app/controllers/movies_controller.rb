@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController 
   def show
-    @studios = Studio.all
+    @movie = Movie.find(params[:id])
   end
 
 end
