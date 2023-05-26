@@ -10,4 +10,9 @@
   <% end %>
 <% end %><br/>
 
-<p>Average Age of Actors: <%= @movie.average_age_of_actors.round %></p>
+<p>Average Age of Actors: <%= @movie.average_age_of_actors.round %></p><br/>
+
+<form action="/movies/<%= @movie.id %>" method="post">
+  <label for="actor_id">Add an Actor to this Movie by Actor ID</label>
+  <input type="number" name="actor_id" id="actor_id">
+  <input type="submit" value="Submit">
