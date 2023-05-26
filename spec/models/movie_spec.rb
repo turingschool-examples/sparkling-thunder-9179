@@ -7,7 +7,6 @@ RSpec.describe Movie, type: :model do
   end
 
   describe "instance methods" do
-    describe "#young_to_old" do
     let!(:studio_1) { Studio.create!(name:"Paramount", location: "Los Angeles") }
     let!(:movie_1) { studio_1.movies.create!(title:"Billy Madison", creation_year: "1994", genre:"Comedy") }
     let!(:movie_2) { studio_1.movies.create!(title:"Happy Gilmore", creation_year: "1995", genre:"Comedy") }
@@ -18,11 +17,20 @@ RSpec.describe Movie, type: :model do
     let!(:actor_4) { movie_2.actors.create!(name:"Bob Barker", age:99) }
     let!(:actor_5) { movie_3.actors.create!(name:"Jim Carrey", age:30) }
     let!(:actor_6) { movie_3.actors.create!(name:"kid actor", age:12) }
+    describe "#young_to_old" do
 
       it "returns list of actors from youngest to oldest" do
         expect(movie_1.young_to_old_actors).to eq([actor_1, actor_2])
         expect(movie_3.young_to_old_actors).to eq([actor_6, actor_5])
         expect(movie_2.young_to_old_actors).to eq([actor_3, actor_4])
+      end
+    end
+
+    describe "#average_age" do
+      it "displays the average age of all the movie's actors" do
+        expect(movie_1.average_age).to eq(56.5)
+        expect(movie_2.average_age).to eq(82)
+        expect(movie_3.average_age).to eq(21)
       end
     end
   end
