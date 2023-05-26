@@ -22,4 +22,28 @@ RSpec.describe "the movie show page" do
     expect(page).to_not have_content(movie2.title)
     expect(page).to_not have_content(actor4.name)
   end
+
+  # Story 3 - Add an Actor to a Movie
+  it "I do not see any actors listed that are not part of the movie and I see a form to add an actor to the movie" do
+    studio1 = Studio.create!(name: "Universal Studios", location: "Hollywood")
+    movie1 = studio1.movies.create!(title: "A Movie", creation_year: "2023", genre: "comedy")
+    movie2 = studio1.movies.create!(title: "B Movie", creation_year: "2013", genre: "horror")
+    actor1 = movie1.actors.create!(name: "Sandra Bullock", age: 58)
+    actor2 = movie1.actors.create!(name: "Meryl Streep", age: 73)
+    actor4 = movie2.actors.create!(name: "Person Actress", age: 40)
+    
+    visit "/movies/#{movie1.id}"
+    
+    expect(page).to_not have_content("Emma Watson")
+    expect(page).to_not have_content(actor4.name)
+    expect(page).to have_button("Submit")
+    
+    actor3 = movie1.actors.create!(name: "Emma Watson", age: 33)
+    
+    fill_in "add_actor", with: "#{actor3.id}"
+    click_on "Submit"
+    visit "/movies/#{movie1.id}"
+    
+    expect(page).to have_content(actor3.name)
+  end
 end

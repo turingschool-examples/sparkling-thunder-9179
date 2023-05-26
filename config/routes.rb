@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get "/studios", to: "studios#index"
+  
   get "/movies/:id", to: "movies#show"
+  post "/movies/:id", to: "movies#create"
+
 end
