@@ -1,9 +1,5 @@
 require "rails_helper"
-# As a user,
-# When I visit a movie's show page.
-# I see the movie's title, creation year, and genre,
-# and a list of all its actors from youngest to oldest.
-# And I see the average age of all of the movie's actors
+
 RSpec.describe "Movie Show Page", type: :feature do
 
   let!(:studio) { Studio.create!(name: "Universal Studios", location: "Hollywood") }
@@ -19,8 +15,6 @@ RSpec.describe "Movie Show Page", type: :feature do
       expect(page).to have_content("Title: #{movie.title}")
       expect(page).to have_content("Creation Year: #{movie.creation_year}")
       expect(page).to have_content("Genre: #{movie.genre}")
-      # save_and_open_page
-
     end
 
     it "will display all actors from youngest to oldest" do
@@ -39,6 +33,7 @@ RSpec.describe "Movie Show Page", type: :feature do
       within "#actors-age" do
         expect(page).to have_content("Average Age of Actors: 50.33")
       end
+      save_and_open_page
     end
   end
 end
