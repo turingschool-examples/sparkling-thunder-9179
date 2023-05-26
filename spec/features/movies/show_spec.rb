@@ -30,6 +30,7 @@ RSpec.describe "movies show page", type: :feature do
     expect(page).to have_content("Title: #{@movie_1.title}")
     expect(page).to have_content("Year: #{@movie_1.creation_year}")
     expect(page).to have_content("Genre: #{@movie_1.genre}")
+    expect(page).to have_content("Add an actor to this movie:")
   end
   
   it "displays a list of the movie's actors from youngest to oldest" do 
