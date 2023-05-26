@@ -1,3 +1,5 @@
+![image](https://github.com/kbergstrom78/sparkling-thunder-9179/assets/124642113/3430e02a-fdf8-4720-8191-2d94c00135ac)
+
 # Movie Tracker
 
 This repository requires and has been tested on Ruby v3.1.1 and is based on Rails 7.0.4.
