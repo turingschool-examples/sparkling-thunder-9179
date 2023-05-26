@@ -23,14 +23,36 @@ RSpec.describe "Movies show page", type: :feature do
     it "displays the movie's title, creation year, and genre" do
       visit "/movies/#{movie_1.id}"
       expect(page).to have_content(movie_1.genre)
-      expect(page).to have_content(movie_2.title)
-      expect(page).to have_content(movie_3.creation_year)
+      expect(page).to have_content(movie_1.title)
+      expect(page).to have_content(movie_1.creation_year)
     end
 
     it "displays list of all the actors from youngest to oldest" do
       visit "/movies/#{movie_1.id}"
-      save_and_open_page
+      # save_and_open_page
       expect(page).to have_content(actor_1.name)
+      expect(page).to have_content(actor_2.name)
+    end
+
+    #Story 3
+# Add an Actor to a Movie
+
+# As a user,
+# When I visit a movie show page,
+# I do not see any actors listed that are not part of the movie
+# And I see a form to add an actor to this movie
+# When I fill in the form with the ID of an actor that exists in the database
+# And I click submit
+# Then I am redirected back to that movie's show page
+# And I see the actor's name is now listed
+# (You do not have to test for a sad path, for example if the id submitted is not an existing actor)
+    it "doesn't display actors who aren't part of the movie" do
+      visit "/movies/#{movie_1.id}"
+      save_and_open_page
+      expect(page).to_not have_content(actor_3.name)
+      expect(page).to_not have_content(actor_4.name)
+      expect(page).to_not have_content(actor_5.name)
+      expect(page).to_not have_content(actor_6.name)
       expect(page).to have_content(actor_2.name)
     end
   end
