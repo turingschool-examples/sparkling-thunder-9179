@@ -2,4 +2,11 @@
 <% @studios.each do |studio| %>
   <p>Studio Name: <%= studio.name %></p>
   <p>Studio Location: <%= studio.location %></p>
+  <div id="stu-move-<%= studio.id %>">
+  <% studio.movies.each do |movie| %>
+    <p>Movie Title: <%= movie.title %></p>
+    <p>Year Created: <%= movie.creation_year %></p>
+    <p>Genre: <%= movie.genre %></p>
+  <% end %>
+  </div>
 <% end %>
