@@ -100,7 +100,6 @@ RSpec.describe "/movies/:id" do
       click_button "Submit"
       expect(current_path).to eq("/movies/#{jodirt.id}")
       expect(page).to have_content("Kid Rock")
-      save_and_open_page
     end
   end
 end
