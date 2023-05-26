@@ -11,17 +11,17 @@ require "rails_helper"
     # And I see the actor's name is now listed
     # (You do not have to test for a sad path, for example if the id submitted is not an existing actor)
     studio_1 = Studio.create!(name: "LucasArts", location: "LA")
-    movie_1 = studio_1.movies.create!(title: "StarWars", creation_year: "1987", genre: "Scifi")
-    actor_1 = movie_1.actors.create!(name: "Mark Hamil", age: 28)
-    actor_2 = movie_1.actors.create!(name: "Harrison Ford", age: 34)
+    movie_1 = studio_1.movies.create!(title: "StarWars", creation_year: "1977", genre: "Scifi")
+    actor_1 = movie_1.actors.create!(name: "Mark Hamil", age: 26)
+    actor_2 = movie_1.actors.create!(name: "Harrison Ford", age: 35)
     visit "movies/#{movie_1.id}"
 
-    expect(page).to_not have_content("Carrie Fisher, 28")
+    expect(page).to_not have_content("Carrie Fisher, 21")
     fill_in("name", with: "Carrie Fisher")
-    fill_in("age", with: 28)
+    fill_in("age", with: 21)
 
     click_button("Add Actor")
 
-    expect(page).to have_content("Carrie Fisher, 28")
+    expect(page).to have_content("Carrie Fisher, 21")
   end
 end
