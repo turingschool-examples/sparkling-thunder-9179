@@ -7,6 +7,7 @@ RSpec.describe "/studios, index page" do
     
     let!(:studio2) {Studio.create!(name: "Max Studios", location: "London")}
     let!(:movie2) {studio2.movies.create!(title: "The Land of Things", creation_year: "2054", genre: "stop motion")}
+    let!(:movie3) {studio2.movies.create!(title: "History of Things", creation_year: "2000", genre: "live action")}
     
 
     it "i see the studio name and location" do
@@ -41,6 +42,7 @@ RSpec.describe "/studios, index page" do
         expect(page).to have_content("Creation Year: #{movie1.creation_year}")
         expect(page).to have_content("Genre: #{movie1.genre}")
         expect(page).to_not have_content("Title: #{movie2.title}")
+        expect(page).to_not have_content("Title: #{movie3.title}")
       end
 
       within "#studio-#{studio2.id}" do
@@ -50,6 +52,9 @@ RSpec.describe "/studios, index page" do
         expect(page).to have_content("Title: #{movie2.title}")
         expect(page).to have_content("Creation Year: #{movie2.creation_year}")
         expect(page).to have_content("Genre: #{movie2.genre}")
+        expect(page).to have_content("Title: #{movie3.title}")
+        expect(page).to have_content("Creation Year: #{movie3.creation_year}")
+        expect(page).to have_content("Genre: #{movie3.genre}")
         expect(page).to_not have_content("Title: #{movie1.title}")
       end
     end

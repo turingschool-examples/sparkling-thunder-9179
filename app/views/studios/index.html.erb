@@ -5,9 +5,9 @@
   <p>Location: <%= studio.location %></p>
   <h4>All Movies</h4>
     <% studio.movies.each do |movie| %>
-      <p>Title: <%= movie.title%></p>
+      <p><b>Title: <%= movie.title%></b></p>
       <p>Creation Year: <%= movie.creation_year%></p>
-      <p>Genre: <%= movie.genre%></p>
+      <p>Genre: <%= movie.genre%></p></br>
     <% end%>
 </div>
 <% end %>
