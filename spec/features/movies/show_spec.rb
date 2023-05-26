@@ -48,9 +48,9 @@ RSpec.describe 'Movies Show Page', type: :features do
   describe 'Add an actor to a movie' do
     it 'Should display form to add an actor to a movie' do
       ace.actors << [jim, cox, dan, sean, tone]
-      
+
       visit "movies/#{ace.id}"
-      save_and_open_page
+      
       expect(page).to_not have_content(arn.id)
       expect(page).to have_button("Add Actor")
 
