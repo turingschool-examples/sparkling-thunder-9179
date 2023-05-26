@@ -1,3 +1,34 @@
+def test_data
+  @studio_1 = Studio.create!(name: "Universal Studios", location: "Hollywood")
+  @studio_2 = Studio.create!(name: "Disney", location: "New York City")
+
+  @movie_1 = @studio_1.movies.create!(title: "Toy Story", creation_year: "1995", genre: "animation")
+  @movie_2 = @studio_1.movies.create!(title: "Matrix", creation_year: "1997", genre: "action")
+  
+  @movie_3 = @studio_2.movies.create!(title: "Little Mermaid", creation_year: "1994", genre: "animation")
+  @movie_4 = @studio_2.movies.create!(title: "Lion King", creation_year: "1991", genre: "animation")
+
+  @actor_1 = Actor.create!(name: "Meryl Streep", age: 73)
+  @actor_2 = Actor.create!(name: "Tim Allen", age: 65)
+  @actor_3 = Actor.create!(name: "Tom Hanks", age: 70)
+  @actor_4 = Actor.create!(name: "Keanu Reeves", age: 48)
+  @actor_5 = Actor.create!(name: "Nick Sacco", age: 32)
+
+  MovieActor.create!(movie: @movie_1, actor: @actor_1)
+  MovieActor.create!(movie: @movie_1, actor: @actor_2)
+  MovieActor.create!(movie: @movie_1, actor: @actor_5)
+
+  MovieActor.create!(movie: @movie_2, actor: @actor_1)
+  MovieActor.create!(movie: @movie_2, actor: @actor_3)
+  MovieActor.create!(movie: @movie_2, actor: @actor_2)
+
+  MovieActor.create!(movie: @movie_3, actor: @actor_3)
+  MovieActor.create!(movie: @movie_3, actor: @actor_4)
+
+  MovieActor.create!(movie: @movie_4, actor: @actor_4)
+  MovieActor.create!(movie: @movie_4, actor: @actor_5)
+  MovieActor.create!(movie: @movie_4, actor: @actor_1)
+end
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
