@@ -16,13 +16,13 @@ RSpec.describe "Movie Show Page" do
   describe "US2 I see the movie's title, creation year, and genre," do
     it "I see a list of all its actors from youngest to oldest. And I see the average age of all of the movie's actors" do
       visit "/movies/#{matrix.id}"
+      save_and_open_page
 
       within("h1") do
         expect(page).to have_content("Movie Show Page")
       end
       
       # within("#movie_info-#{matrix.id}") do
-        expect(page).to have have_content()
         expect(page).to have_content(matrix.title)
         expect(page).to have_content(matrix.genre)
         expect(page).to have_content(matrix.creation_year)
