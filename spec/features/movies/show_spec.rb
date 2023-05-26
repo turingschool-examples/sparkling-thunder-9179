@@ -13,6 +13,7 @@ RSpec.describe '/movies/:id' do
 
     @lee = Actor.create!(name: 'Lee Moran', age: 24)
     @bess = Actor.create!(name: 'Bess Meredyth', age: 22)
+    @stella = Actor.create!(name: 'Stella Adams', age: 29)
     
     @patton = Actor.create!(name: 'Patton Oswalt', age: 54)
 
@@ -61,37 +62,45 @@ RSpec.describe '/movies/:id' do
         end
     end
     
-    it 'does not display actors not in a movie' do 
+    it 'adds existing actors to movies' do 
       visit "/movies/#{@when_bess_got_in_wrong.id}"
 
       within ("#add-an-actor") do
-      expect(page).to have_button('Add an Actor')
-      expect(page).to have_field(:name)
-      expect(page).to have_field(:age)
-      fill_in(:name, with: 'Stella Adams')
-      fill_in(:age, with: 29)
-      click_button('Add an Actor')
+      expect(page).to have_content('Add an Actor')
+      expect(page).to have_button('Submit')
+      expect(page).to have_field(:actor_id)
+      
+      fill_in(:actor_id, with: @stella.id)
+      click_button('Submit')
     end
-
-      expect(current_path).to eq("/movies/#{@when_bess_got_in_wrong.id}")
-
-      within("#actors") do 
+    
+    expect(current_path).to eq("/movies/#{@when_bess_got_in_wrong.id}")
+    
+    within("#actors") do 
       expect(page).to have_content("Stella Adams")
     end
-
-      expect(page).to have_content('Average Age of Actors: 25')
-    end
+    
+    expect(page).to have_content('Average Age of Actors: 25')
   end
 end
-  # Story 3
-  # Add an Actor to a Movie
-  
-  # As a user,
-  # When I visit a movie show page,
-  
-  # And I see a form to add an actor to this movie
-  # When I fill in the form with the ID of an actor that exists in the database
-  # And I click submit 
-  # Then I am redirected back to that movie's show page
-  # And I see the actor's name is now listed
-  # (You do not have to test for a sad path, for example if the id submitted is not an existing actor)
+
+it 'adds actors to other existing movies' do 
+  visit "/movies/#{@ratatouille.id}" 
+  within("#add-an-actor") do 
+    expect(page).to have_content('Add an Actor')
+    expect(page).to have_button('Submit')
+    expect(page).to have_field(:actor_id)
+
+    fill_in(:actor_id, with: @patton.id)
+    click_button('Submit')
+  end
+
+    expect(current_path).to eq("/movies/#{@ratatouille.id}")
+
+    within("#actors") do 
+      expect(page).to have_content(@patton.name)
+    end
+
+    expect(page).to have_content("Average Age of Actors: 54")
+  end
+end

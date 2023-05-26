@@ -4,14 +4,18 @@
 <p>Genre: <%= @movie.genre %></p>
 <p>Average Age of Actors: <%= @movie.average_age %>
 </section> 
+
 <section id='actors'>
 <% @actors.each do |actor|%>
 <p><%= actor.name %><p>
 <% end %>
 </section>
+
 <section id='add-an-actor'>
-<%= form_with url: "/movies/#{@movie.id}/new", method: :post, local: true do |form| %>
-<%= form.text_field(:name) %>
-<%= form.text_field(:age) %>
-<%= form.submit 'Add an Actor' %>
+<h3>Add an Actor</h3>
+<%= form_with url: "/movies/#{@movie.id}", method: :post, local: true do |form| %>
+<%= form.text_field(:actor_id) %>
+<%= form.hidden_field(:movie_id, value: @movie.id) %>
+<%= form.submit 'Submit' %>
 <% end %>
+</section>

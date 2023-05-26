@@ -7,7 +7,7 @@ class Movie < ApplicationRecord
     actors.average(:age)
   end
 
-  def sort_by_age
+  def sort_actors_by_age
     actors.order(:age)
   end
 end
