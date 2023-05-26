@@ -15,7 +15,7 @@ RSpec.describe Movie, type: :model do
     let!(:movie2) {studio2.movies.create!(title: "The Land of Things", creation_year: "2054", genre: "stop motion")}
     let!(:movie3) {studio2.movies.create!(title: "History of Things", creation_year: "2000", genre: "live action")}
     
-    let!(:actor1) {Actor.create!(name: "Meryl Streep", age: 73)}
+    let!(:actor1) {Actor.create!(name: "Meryl Streep", age: 72)}
     let!(:actor2) {Actor.create!(name: "Betty White", age: 89)}
     let!(:actor3) {Actor.create!(name: "Major Tom", age: 27)}
 
@@ -27,6 +27,13 @@ RSpec.describe Movie, type: :model do
     describe "#actor_age_sorted" do
       it "lists the actors from youngest to oldest" do
         expect(movie1.actor_age_sorted).to eq([actor3, actor1])
+      end
+    end
+
+    describe "#average_actor_age" do
+      it "returns the average age of all actors in the movie" do
+        expect(movie1.average_actor_age).to eq(49.50)
+        expect(movie2.average_actor_age).to eq(89)
       end
     end
   end

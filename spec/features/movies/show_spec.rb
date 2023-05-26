@@ -9,7 +9,7 @@ RSpec.describe "/movies/:id, show page" do
     let!(:movie2) {studio2.movies.create!(title: "The Land of Things", creation_year: "2054", genre: "stop motion")}
     let!(:movie3) {studio2.movies.create!(title: "History of Things", creation_year: "2000", genre: "live action")}
     
-    let!(:actor1) {Actor.create!(name: "Meryl Streep", age: 73)}
+    let!(:actor1) {Actor.create!(name: "Meryl Streep", age: 72)}
     let!(:actor2) {Actor.create!(name: "Betty White", age: 89)}
     let!(:actor3) {Actor.create!(name: "Major Tom", age: 27)}
 
@@ -38,14 +38,18 @@ RSpec.describe "/movies/:id, show page" do
 
     it "I see a list of all its actors from youngest to oldest" do
       visit "movies/#{movie1.id}"
-
+      # save_and_open_page
       expect(page).to have_content("All Actors")
       expect(actor3.name).to appear_before(actor1.name)
       expect(page).to_not have_content(actor2.name)
     end
 
     it "I see an average age of all this movie's actors" do
+      visit "movies/#{movie1.id}"
 
+      # save_and_open_page
+
+      expect(page).to have_content("Average Age of All Actors: #{movie1.average_actor_age}") 
     end
   end
 end
