@@ -1,0 +1,15 @@
+<h1 style="font-size:60px;"><center>Movies</h1>
+
+<h3>Title: </h3><%= @movie.title %>
+<h3>Year Made: </h3><%= @movie.creation_year %>
+<h3>Genre: </h3><%= @movie.genre %>
+<br>
+<br>
+<h2 style="background-color:grey;"><center>Actors in this Movie</h2>
+<% @movie.ordered_age.each do |actor| %>
+  <li><%= actor.name %></li>  <li style="float:right;"><b>Age During Filming:</b> <b style="color:blue;"><%= actor.age %></b></li>
+<% end %>
+<br>
+<br>
+
+<p>Average Age: <%= @movie.avg_age.round %></p>
