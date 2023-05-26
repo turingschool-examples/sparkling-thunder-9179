@@ -12,6 +12,7 @@ RSpec.describe "/movies/:id, show page" do
     let!(:actor1) {Actor.create!(name: "Meryl Streep", age: 72)}
     let!(:actor2) {Actor.create!(name: "Betty White", age: 89)}
     let!(:actor3) {Actor.create!(name: "Major Tom", age: 27)}
+    let!(:actor4) {Actor.create!(name: "Suzie Styles", age: 17)}
 
     let!(:actmov1) {ActorMovie.create!(actor_id: actor1.id, movie_id: movie1.id)}
     let!(:actmov2) {ActorMovie.create!(actor_id: actor3.id, movie_id: movie1.id)}
@@ -36,12 +37,14 @@ RSpec.describe "/movies/:id, show page" do
       expect(page).to_not have_content(movie1.title)
     end
 
-    it "I see a list of all its actors from youngest to oldest" do
+    it "I see a list of all its actors from youngest to oldest and do not see actors that are not part of this movie" do
       visit "movies/#{movie1.id}"
       # save_and_open_page
       expect(page).to have_content("All Actors")
-      expect(actor3.name).to appear_before(actor1.name)
-      expect(page).to_not have_content(actor2.name)
+      within "#movie-#{movie1.id}" do
+        expect(actor3.name).to appear_before(actor1.name)
+        expect(page).to_not have_content(actor2.name)
+      end
     end
 
     it "I see an average age of all this movie's actors" do
@@ -50,6 +53,24 @@ RSpec.describe "/movies/:id, show page" do
       # save_and_open_page
 
       expect(page).to have_content("Average Age of All Actors: #{movie1.average_actor_age}") 
+    end
+
+    it "see a form to add an existing actor to this movie" do
+      visit "movies/#{movie1.id}"
+
+      expect(page).to have_content("Add an Actor to this Movie")
+
+      fill_in "Actor", with: "#{actor4.id}"
+      click_button "Submit"
+
+      save_and_open_page
+      expect(current_path).to eq("/movies/#{movie1.id}")
+
+      within "#movie-#{movie1.id}" do
+        expect(actor4.name).to appear_before(actor3.name)
+        expect(actor3.name).to appear_before(actor1.name)
+        expect(page).to_not have_content(actor2.name)
+      end
     end
   end
 end

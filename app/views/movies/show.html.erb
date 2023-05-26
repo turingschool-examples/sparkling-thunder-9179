@@ -4,7 +4,16 @@
 <p><b>Average Age of All Actors:</b> <%= @movie.average_actor_age %></p>
 
 <h3>All Actors</h3>
-<% @movie.actor_age_sorted.each do |actor| %>
-  <p><b><%= actor.name %></b></p>
-  <p><%= actor.age %></p>
+<div id="movie-<%= @movie.id %>">
+  <% @movie.actor_age_sorted.each do |actor| %>
+    <p><b><%= actor.name %></b></p>
+    <p><%= actor.age %></p>
+  <% end %>
+</div>
+
+<h3>Add an Actor to this Movie</h3>
+<%= form_with url: "/movies/#{@movie.id}/actor_movies", local: true, method: :post do |form| %>
+  <%= form.label :actor_id %>
+  <%= form.text_field :actor_id %>
+  <%= form.submit "Submit" %>
 <% end %>
