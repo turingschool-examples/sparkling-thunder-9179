@@ -57,6 +57,7 @@ group :development, :test do
   gem "pry"
   gem "simplecov"
   gem "shoulda-matchers"
+  gem 'orderly'
 end
 
 group :development do
@@ -70,3 +71,4 @@ group :development do
   # gem "spring"
 end
 
+start time: 11:47, end time: 2:47
