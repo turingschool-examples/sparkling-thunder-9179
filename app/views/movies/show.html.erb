@@ -10,3 +10,10 @@
 </ul>
 
 <p>Average Age: <%= @average_age %></p>
+
+<h2>Add Actor</h2>
+<%= form_with(url: "/movies/#{@movie.id}", method: :post) do |f| %>
+  <%= f.label :actor_id, "Actor ID" %>
+  <%= f.text_field :actor_id %>
+  <%= f.submit "Add Actor" %>
+<% end %>
