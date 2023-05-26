@@ -1,7 +1,7 @@
 <p>Movie: <%= @movie.title %></p>
 <p>Year: <%= @movie.creation_year %></p>
 <p>Genre: <%= @movie.genre %></p>
-<p>Actors:<%= @actors_age.each do |actor| %>
+<p>Actors:<%= @actors_age.each do |actor| %><br>
   <%= actor.name %>,
   <%= actor.age %>
 </p> 

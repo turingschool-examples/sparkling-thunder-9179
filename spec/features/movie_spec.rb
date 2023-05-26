@@ -18,7 +18,13 @@ RSpec.describe "movie show page" do
     expect(page).to have_content("Year: 1987")
     expect(page).to have_content("Genre: Scifi")
      
-    expect(page).to have_content("Actors: Mark Hamil, Carrie Fisher, Harrison Ford")
-    expect(page).to have_content("Average age: ")
+    expect(page).to have_content("Mark Hamil, 28")
+    expect(page).to have_content("Carrie Fisher, 28")
+    expect(page).to have_content("Harrison Ford, 34")
+
+    expect("Mark Hamil, 28").to appear_before("Carrie Fisher, 28", only_text: true)
+    expect("Carrie Fisher, 28").to appear_before("Harrison Ford, 34", only_text: true)
+    expect("Harrison Ford, 34").to_not appear_before("Carrie Fisher, 28", only_text: true)
+    expect(page).to have_content("Average Age: 30.0")
   end
 end
