@@ -1,0 +1,14 @@
+<h1>Studio Show Page</h1>
+
+<p><%= @studio.name %></p>
+<p><%= @studio.location %></p>
+
+<br>
+<h3>List of Actors that worked with Studio</h3>
+
+<% @studio.movies.each do |movie| %>
+  <% movie.actors.distinct.each do |actor| %>
+    <%= actor.name %>
+    <%= actor.age %>
+  <% end %>
+<% end %>
