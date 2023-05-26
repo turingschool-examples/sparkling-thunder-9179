@@ -28,7 +28,6 @@ RSpec.describe "studios index page", type: :feature do
     visit studios_path
 
     within "#studio-#{@studio_1.id}" do 
-      # expect(page).to_not have_content("#{@movie_7.title}")
       expect(page).to have_content("#{@movie_1.title}")
       expect(page).to have_content("#{@movie_1.creation_year}")
       expect(page).to have_content("#{@movie_1.genre}")
