@@ -23,7 +23,7 @@ RSpec.describe "/studios" do
 
     it "also displays under each studio all the studio's movies including the movies title, creation year and genre" do
       visit '/studios'
-      save_and_open_page
+      
       within "#studio-#{@studio_1.id}" do
         expect(page).to have_content("Movie: #{@movie_1.title}")
         expect(page).to have_content("Year: #{@movie_1.creation_year}")

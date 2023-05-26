@@ -2,3 +2,14 @@
 <h2>Title: <%= @movie.title %></h2>
 <h2>Creation Year: <%= @movie.creation_year %></h2>
 <h2>Genre: <%= @movie.genre %></h2>
+<h2>Actors in Movie</h2>
+<% @movie.young_to_old_actors.each do |actor| %>
+  <p><%= actor.name %></P>
+<% end %>
+<h2>Average age of actors: <%= @movie.av_age_actors %></h2>
+
+ <%= form_with url: "/movies/#{@movie.id}", method: :post, local:true do |form| %>
+  <p> <%= form.label :actor_id, "Actor ID" %></p>
+  <p><%= form.text_field :actor_id %></p>
+  <p><%= form.submit "Submit" %>
+<% end %>
