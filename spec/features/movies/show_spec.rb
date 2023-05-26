@@ -74,5 +74,33 @@ RSpec.describe "/movies/:id" do
 
       expect(page).to have_content("Average Age of Actors: #{(spade.age + walken.age)/jodirt.actors.count}")
     end
+
+    it "does not list actors that are not in the movie" do 
+      wb = Studio.create!(name: "Warner Brothers", location: "Burbank")
+      jodirt = wb.movies.create!(title: "Joe Dirt", creation_year: "2000", genre: "Comedy")
+      spade = jodirt.actors.create!(name: "David Spade", age: 46)  
+      walken = jodirt.actors.create!(name: "Christopher Walken", age: 74) 
+      robert = Actor.create!(name: "Bobby Dinero", age: 74) 
+
+
+      visit "/movies/#{jodirt.id}"
+
+      expect(page).to_not have_content(robert.name)
+    end
+
+    it "has a form to add actor to movie" do 
+      wb = Studio.create!(name: "Warner Brothers", location: "Burbank")
+      jodirt = wb.movies.create!(title: "Joe Dirt", creation_year: "2000", genre: "Comedy")
+      spade = jodirt.actors.create!(name: "David Spade", age: 46)  
+      walken = jodirt.actors.create!(name: "Christopher Walken", age: 74) 
+      rock = Actor.create!(name: "Kid Rock", age: 52)
+      visit "/movies/#{jodirt.id}"
+
+      fill_in("Actor ID", with: rock.id)
+      click_button "Submit"
+      expect(current_path).to eq("/movies/#{jodirt.id}")
+      expect(page).to have_content("Kid Rock")
+      save_and_open_page
+    end
   end
 end
