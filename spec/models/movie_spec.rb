@@ -17,5 +17,9 @@ RSpec.describe Movie, type: :model do
     it '#average_age' do 
       expect(@when_bess_got_in_wrong.average_age).to eq(23)
     end
+
+    it '#sort_by_age' do 
+      expect(@when_bess_got_in_wrong.sort_by_age).to eq([@bess, @lee])
+    end
   end
 end
