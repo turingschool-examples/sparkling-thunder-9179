@@ -12,13 +12,16 @@ RSpec.describe Movie, type: :model do
       @when_bess_got_in_wrong = @universal.movies.create!(title: 'When Bess Got in Wrong', creation_year: '1914', genre: 'silent comedy')
       @lee = Actor.create!(name: 'Lee Moran', age: 24)
       @bess = Actor.create!(name: 'Bess Meredyth', age: 22)
+
+      MovieActor.create!(movie: @when_bess_got_in_wrong, actor: @lee)
+      MovieActor.create!(movie: @when_bess_got_in_wrong, actor: @bess)
     end
 
-    xit '#average_age' do 
+    it '#average_age' do 
       expect(@when_bess_got_in_wrong.average_age).to eq(23)
     end
 
-    xit '#sort_by_age' do 
+    it '#sort_by_age' do 
       expect(@when_bess_got_in_wrong.sort_actors_by_age).to eq([@bess, @lee])
     end
   end
