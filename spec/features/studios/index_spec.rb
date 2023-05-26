@@ -16,13 +16,33 @@ RSpec.describe "Studio Index" do
   describe "US1 I visit the studio index page, Then I see all of the studios including name and location" do
     it "under each studio I see all of the studio's movies including the movie's title, creation year, and genre" do
       visit "/studios"
+save_and_open_page
 
-      expect(page).to have_content(studio1.name)
-      expect(page).to have_content(studio1.location)
+      within("h1") do
+        expect(page).to have_content("Studio Index Page")
+      end
+
+      within("#studio_info-#{studio1.id}") do
+        expect(page).to have_content(studio1.name)
+        expect(page).to have_content(studio1.location)
+        expect(page).to have_content("Speed")
+        expect(page).to have_content(1999)
+        expect(page).to have_content("Action")
+        expect(page).to have_content("Always Be My Maybe")
+        expect(page).to have_content(2019)
+        expect(page).to have_content("Rom Com")
+        expect(page).to_not have_content("Point Break")
+        expect(page).to_not have_content("John Wick")
+      end
+
       expect(page).to have_content(studio2.name)
       expect(page).to have_content(studio2.location)
       expect(page).to have_content(studio3.name)
       expect(page).to have_content(studio3.location)
+
+      expect(page).to have_content("John Wick")
+      expect(page).to have_content("Bill & Ted's Excellent Adventure")
+      expect(page).to have_content("Point Break")
       end
     end
   end
