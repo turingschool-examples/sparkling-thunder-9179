@@ -22,7 +22,7 @@ RSpec.describe "Movie Show Page" do
 
       matrix.actors << [keanu,laurence,carrie]
       visit "/movies/#{matrix.id}"
-      save_and_open_page
+      # save_and_open_page
 
       within("h1") do
         expect(page).to have_content("Movie Show Page")
@@ -52,7 +52,21 @@ RSpec.describe "Movie Show Page" do
         expect(keanu.name).to appear_before(laurence.name)
 
         expect(page).to have_content("Average Actor's Age: 58 years.")
+      end
+    end
 
+    describe "US3 Add an Actor to a Movie" do
+      it "I see a form to add an actor to this movie When I fill in the form with the ID of an actor that exists in the database And I click submit Then I am redirected back to that movie's show page
+      And I see the actor's name is now listed" do
+        visit "/movies/#{matrix.id}"
+        save_and_open_page
+
+        expect(page).to have_content("Add Actor")
+        fill_in "Actor ID", with: "#{ali.id}"
+        click_on "Submit"
+
+        expect(current_path).to eq("/movies/#{matrix.id}")
+        expect(page).to have_content(ali.name)
       end
     end
   end
