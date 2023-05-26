@@ -63,7 +63,7 @@ RSpec.describe "/movies/:id, show page" do
       fill_in "Actor", with: "#{actor4.id}"
       click_button "Submit"
 
-      save_and_open_page
+      # save_and_open_page
       expect(current_path).to eq("/movies/#{movie1.id}")
 
       within "#movie-#{movie1.id}" do
