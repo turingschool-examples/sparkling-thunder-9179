@@ -1,9 +1,7 @@
 class MovieActorsController < ApplicationController
   def create
-    movie = Movie.find(params[:id])
-    actor = Actor.find(params[:actor_id])
     MovieActor.create!(movie_actor_params)
-    redirect_to "/movies/#{movie.id}"
+    redirect_to "/movies/#{params[:movie_id]}"
   end
 
   private
