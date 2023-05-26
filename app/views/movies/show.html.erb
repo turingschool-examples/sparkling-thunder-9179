@@ -1,12 +1,16 @@
 <h1> Movie Show Page </h1>
 
-<h4><%= @movie.title %></h4>
-<p><%= @movie.creation_year %></p>
-<p><%= @movie.genre %></p>
+<section id="movie_info-<%= @movie.id %>">
+  <h4><%= @movie.title %></h4>
+  <p>Year Made: <%= @movie.creation_year %></p>
+  <p>Genre: <%= @movie.genre %></p>
+</section>
 
+<section id="movie_actors-<%= @movie.id %>">
+
+<h4>Movie Actors<h4>
 <% @movie.orders_actors_by_age.each do |actor| %>
 <ul>
-<p>Movie Actors<p>
 
 <li>Name: <%= actor.name %></li>
 <li>Age: <%= actor.age %></li>
@@ -14,14 +18,16 @@
 <% end %>
 
 <p> Average Actor's Age: <%= @movie.average_age.to_i %> years. </p>
+</section>
 
-<h4> Add Actor </h4>
-
-<%= form_with url: "/movie_actors", method: :post, local: true do |form| %>
-  <%= form.label :actor_id, "Actor ID" %>
-  <%= form.text_field :actor_id %>
-  <%= form.hidden_field :movie_id, value: @movie.id %>
-  <%= form.submit 'Submit' %>
-<% end %>
+<section id="add-actor">
+  <h4> Add Actor </h4>
+  <%= form_with url: "/movie_actors", method: :post, local: true do |form| %>
+    <%= form.label :actor_id, "Actor ID" %>
+    <%= form.text_field :actor_id %>
+    <%= form.hidden_field :movie_id, value: @movie.id %>
+    <%= form.submit 'Submit' %>
+  <% end %>
+</section>
 
 
