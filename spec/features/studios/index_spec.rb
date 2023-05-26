@@ -33,7 +33,7 @@ RSpec.describe "/studios, index page" do
 
     it "see all movies & their attributes associated with each studio" do
       visit "/studios"
-      save_and_open_page
+      # save_and_open_page
       within "#studio-#{studio1.id}" do
         expect(page).to have_content(studio1.name)
         expect(page).to have_content("Location: #{studio1.location}")
