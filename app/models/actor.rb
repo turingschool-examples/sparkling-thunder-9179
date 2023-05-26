@@ -1,8 +1,8 @@
 class Actor < ApplicationRecord
   belongs_to :movie
 
-  def sort_age
-    Actor.order(age: :desc)
+  def self.sort_age
+    order(age: :asc)
   end
 
   def self.average_age
