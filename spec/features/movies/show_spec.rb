@@ -12,8 +12,10 @@ RSpec.describe '/movies/:id' do
     @ratatouille = @pixar.movies.create!(title: 'Ratatouille', creation_year: '2007', genre: 'comedy')
     @inside_out = @pixar.movies.create!(title: 'Inside Out', creation_year: '2015', genre: 'coming-of-age')
 
-    @lee = @when_bess_got_in_wrong.actors.create!(name: 'Lee Moran', born: 1888, age: 22)
-    @bess = @when_bess_got_in_wrong.actors.create!(name: 'Bess Meredyth', born: 1890, age: 24)
+    @lee = @when_bess_got_in_wrong.actors.create!(name: 'Lee Moran', age: 24)
+    @bess = @when_bess_got_in_wrong.actors.create!(name: 'Bess Meredyth', age: 22)
+    
+    @patton = @ratatouille.actors.create!(name: 'Patton Oswalt', age: 54)
   end
 
   describe 'movie show page' do 
@@ -48,5 +50,16 @@ RSpec.describe '/movies/:id' do
       visit "/movies/#{@when_bess_got_in_wrong.id}"
       expect(page).to have_content('Average Age of Actors: 23')
     end
+
+    # User Story 3
+    it 'does not display actors not in a movie' do 
+      visit "/movies/#{@when_bess_got_in_wrong.id}" do 
+        within("#actors") do 
+          expect(page).to_not have_content(@patton.name)
+        end
+      end
+    end
   end
+
+  
 end
