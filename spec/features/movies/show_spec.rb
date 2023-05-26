@@ -33,7 +33,6 @@ RSpec.describe "Movie Show Page", type: :feature do
       within "#actors-age" do
         expect(page).to have_content("Average Age of Actors: 50.33")
       end
-      save_and_open_page
     end
   end
 end
