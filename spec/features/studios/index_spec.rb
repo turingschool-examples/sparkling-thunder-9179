@@ -7,7 +7,7 @@ RSpec.describe "Studio index" do
   let!(:movie1) { studio1.movies.create!(title: "Batman", creation_year: "2008", genre: "Action") }
   let!(:movie2) { studio2.movies.create!(title: "Spongebob", creation_year: "2022", genre: "Comedy") }
 
-  describe "List of all studios" do
+  describe "List of all studios (User Story 1)" do
     it "sees all of the studios including name and location" do
       visit "/studios"
       expect(page).to have_content("Studios Index")
