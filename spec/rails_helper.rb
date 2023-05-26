@@ -4,9 +4,32 @@ def test_data
 
   @movie_1 = @studio_1.movies.create!(title: "Raiders of the Lost Ark", creation_year: "1981", genre: "Action/Adventure")
   @movie_2 = @studio_1.movies.create!(title: "Jurassic Park", creation_year: "1993", genre: "Action/Adventure")
-  @movie_3 = @studio_2.movies.create!(title: "Die Another Day", creation_year: "2002", genre: "Action/Adventure")
-  @movie_4 = @studio_2.movies.create!(title: "The Manchurian Candidate", creation_year: "1962", genre: "Action/Adventure")
-  
+  @movie_3 = @studio_2.movies.create!(title: "Ready Player One", creation_year: "2018", genre: "Sci-Fi/Adventure")
+  @movie_4 = @studio_2.movies.create!(title: "The Longest Ride", creation_year: "2015", genre: "Romance/Drama")
+
+  @actor_1 = Actor.create!(name: "Harrison Ford", age: 80)
+  @actor_2 = Actor.create!(name: "Karen Allen", age: 71)
+
+  @actor_3 = Actor.create!(name: "Laura Dern", age: 56)
+  @actor_4 = Actor.create!(name: "Jeff Goldblum", age: 70)
+
+  @actor_5 = Actor.create!(name: "Tye Sheridan", age: 24)
+  @actor_6 = Actor.create!(name: "Olivia Cooke", age: 29)
+
+  @actor_7 = Actor.create!(name: "Scott Eastwood", age: 37)
+  @actor_8 = Actor.create!(name: "Britt Robertson", age: 33)
+
+  ActorMovie.create!(actor: @actor_1, movie: @movie_1)
+  ActorMovie.create!(actor: @actor_2, movie: @movie_1)
+
+  ActorMovie.create!(actor: @actor_3, movie: @movie_2)
+  ActorMovie.create!(actor: @actor_4, movie: @movie_2)
+
+  ActorMovie.create!(actor: @actor_5, movie: @movie_3)
+  ActorMovie.create!(actor: @actor_6, movie: @movie_3)
+
+  ActorMovie.create!(actor: @actor_7, movie: @movie_4)
+  ActorMovie.create!(actor: @actor_8, movie: @movie_4)
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
