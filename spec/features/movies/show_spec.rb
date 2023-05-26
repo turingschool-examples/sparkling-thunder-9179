@@ -51,6 +51,8 @@ RSpec.describe "Movie Show Page" do
         expect(carrie.name).to appear_before(keanu.name)
         expect(keanu.name).to appear_before(laurence.name)
 
+        expect(page).to have_content("Average Actor's Age: 58 years.")
+
       end
     end
   end

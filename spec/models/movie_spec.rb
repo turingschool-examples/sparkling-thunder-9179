@@ -22,10 +22,19 @@ RSpec.describe Movie, type: :model do
 
   describe "US2 list of all its actors from youngest to oldest." do
     it ".orders_actors_by_age" do
-      
+
       matrix.actors << [keanu,laurence,carrie]
 
       expect(matrix.orders_actors_by_age).to eq([carrie, keanu, laurence])
+    end
+
+    describe "US2 calculates average age of actors." do
+      it ".average_age" do
+        
+        matrix.actors << [keanu,laurence,carrie]
+  
+        expect(matrix.average_age).to eq(58)
+      end
     end
   end
 end
