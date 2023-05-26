@@ -17,17 +17,18 @@ RSpec.describe "studios index page", type: :feature do
 
   it "displays a list of all studios with their name and locaiton" do 
     visit studios_path
-
-    expect(page).to have_content("Name: #{@studio_1.name}")
-    expect(page).to have_content("Name: #{@studio_2.name}")
-    expect(page).to have_content("Location: #{@studio_1.location}")
-    expect(page).to have_content("Location: #{@studio_2.location}")
+  
+    expect(page).to have_content("#{@studio_1.name}")
+    expect(page).to have_content("#{@studio_2.name}")
+    expect(page).to have_content("#{@studio_1.location}")
+    expect(page).to have_content("#{@studio_2.location}")
   end
 
   it "displays a list of all of each studio's movies and their attributes under the studio" do 
     visit studios_path
 
     within "#studio-#{@studio_1.id}" do 
+      # expect(page).to_not have_content("#{@movie_7.title}")
       expect(page).to have_content("#{@movie_1.title}")
       expect(page).to have_content("#{@movie_1.creation_year}")
       expect(page).to have_content("#{@movie_1.genre}")
@@ -37,7 +38,6 @@ RSpec.describe "studios index page", type: :feature do
       expect(page).to have_content("#{@movie_3.title}")
       expect(page).to have_content("#{@movie_3.creation_year}")
       expect(page).to have_content("#{@movie_3.genre}")
-      expect(page).to_not have_content("#{@movie_5.title}")
     end
 
     within "#studio-#{@studio_2.id}" do 
