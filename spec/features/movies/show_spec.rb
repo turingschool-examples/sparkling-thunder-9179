@@ -26,14 +26,18 @@ RSpec.describe "Movie Show Page /movies/:id", type: :feature do
   describe "Listing Actors on a movie show page" do
     it "can list all actors from youngest to oldest" do
       visit "/movies/#{@movie_2.id}"
-
+      
       expect(@actor_2.name).to appear_before(@actor_3.name)
       expect(@actor_3.name).to appear_before(@actor_1.name)
       expect(@actor_1.name).to_not appear_before(@actor_2.name)
     end
+    
+    it "can show the average age of all actors in a movie" do
+      visit "/movies/#{@movie_4.id}"
+      expect(page).to have_content("Average Age: 51")
 
-    xit "can show the average age of all actors in a movie" do
-
+      visit "/movies/#{@movie_3.id}"
+      expect(page).to have_content("Average Age: 59")
     end
   end
 end
