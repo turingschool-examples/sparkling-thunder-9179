@@ -2,5 +2,7 @@
   <p>Studio Name: <%= @studio.name %></p>
   <p>Studio Location: <%= @studio.location %></p>
   
-  <h3>Actors in this Studio:</h3>
-
+  <h3>Actors in this Studio:</h3> 
+  <% @actors.each do |actor| %>
+    <%= actor.name %><br>
+  <% end %>
