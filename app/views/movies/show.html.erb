@@ -1,0 +1,15 @@
+<h1>Movie</h1>
+
+<section>
+  <p>  <% @studios.each do |studio| %></p>
+  <p> Movie:</p>
+    <% studio.movies.each do |movie| %>
+    <p> Title: <%= movie.title %> </p>
+    <p> Year: <%= movie.creation_year %> </p>
+    <p> Genre: <%= movie.genre %> </p>
+    <p> Actor by age:</p>
+    <% movie.young_to_old_actors.each do |actor| %>
+      <%= actor.name %>
+    <% end %>
+  <% end %>
+<% end %>
