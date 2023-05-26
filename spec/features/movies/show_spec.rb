@@ -72,9 +72,7 @@ RSpec.describe "Movies Show Page" do
   it "displays a form to add an actor to this movie (who is not already in it)" do
     visit "/movies/#{@movie_1.id}"
 
-    expect(find("form")).to have_content("Actor ID")
-
-    fill_in("Actor ID", with @actor_3.id)
+    fill_in("Actor ID", with: @actor_3.id)
     click_button "Sumbit"
 
     expect(page).to have_current_path("/movies/#{@movie_1.id}")
