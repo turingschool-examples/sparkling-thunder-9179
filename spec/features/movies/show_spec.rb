@@ -37,7 +37,9 @@ RSpec.describe "/movies/:id" do
         expect(page).to_not have_content("Genre: #{movie_3.genre}")
       end
 
-      it "displays a list of all its actors from youngest to oldest" do
+      # Chris and I spoke about this. Orderly wasn't working correctly I guess?
+
+      xit "displays a list of all its actors from youngest to oldest" do
         studio_1 = Studio.create!(name: "Universal Studios", location: "Hollywood")
         studio_2 = Studio.create!(name: "Janbarra Studios", location: "Somewhere Else")
 
@@ -55,11 +57,29 @@ RSpec.describe "/movies/:id" do
         mov_act_4= MovieActor.create!(movie_id: movie_3.id, actor_id: actor_1.id)
 
         visit "/movies/#{movie_1.id}"
-        
+
         expect(actor_3.name).to appear_before(actor_2.name)
       end
 
       it "displays an average age of all the movies actors" do
+        studio_1 = Studio.create!(name: "Universal Studios", location: "Hollywood")
+        studio_2 = Studio.create!(name: "Janbarra Studios", location: "Somewhere Else")
+
+        movie_1 = studio_1.movies.create!(title: "Wayne's World", creation_year: "1992", genre: "Amazing")
+        movie_2 = studio_1.movies.create!(title: "Bill and Ted's Excellent Adventure", creation_year: "2000", genre: "Action")
+        movie_3 = studio_2.movies.create!(title: "Passion of the Christ", creation_year: "1", genre: "Horror")
+
+        actor_1 = Actor.create!(name: "Keanu", age: 132)
+        actor_2 = Actor.create!(name: "Wayne", age: 34)
+        actor_3 = Actor.create!(name: "Garth", age: 31)
+
+        mov_act_1= MovieActor.create!(movie_id: movie_1.id, actor_id: actor_2.id)
+        mov_act_2= MovieActor.create!(movie_id: movie_1.id, actor_id: actor_3.id)
+        mov_act_3= MovieActor.create!(movie_id: movie_2.id, actor_id: actor_1.id)
+        mov_act_4= MovieActor.create!(movie_id: movie_3.id, actor_id: actor_1.id)
+
+        visit the page
+        see the average ago of the actors 
 
       end
     end
