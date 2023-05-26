@@ -14,6 +14,7 @@ RSpec.describe 'Movies Show Page', type: :features do
   let!(:jim) { Actor.create!(name: "Jim Carrey", age: 25) }
   let!(:sean) { Actor.create!(name: "Mary Sean Young", age: 30) }
   let!(:tone) { Actor.create!(name: "Tone Loc", age: 35) }
+  let!(:arn) { Actor.create!(name: "Arnold Schwarzenegger", age: 35) }
 
   describe 'Displays movies attributes' do
     it 'Should display movie title, creation year, and genre' do
@@ -41,6 +42,23 @@ RSpec.describe 'Movies Show Page', type: :features do
       visit "/movies/#{ace.id}"
 
       expect(page).to have_content("Average Age: 30")
+    end
+  end
+
+  describe 'Add an actor to a movie' do
+    it 'Should display form to add an actor to a movie' do
+      ace.actors << [jim, cox, dan, sean, tone]
+      
+      visit "movies/#{ace.id}"
+      save_and_open_page
+      expect(page).to_not have_content(arn.id)
+      expect(page).to have_button("Add Actor")
+
+      fill_in(:actor_id, with: "#{arn.id}")
+      click_button("Add Actor")
+
+      expect(current_path).to eq("/movies/#{ace.id}")
+      expect(page).to have_content(arn.name)
     end
   end
 end
