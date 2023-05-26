@@ -44,6 +44,19 @@ RSpec.describe "/movies/:id, show page" do
       within "#movie-#{movie1.id}" do
         expect(actor3.name).to appear_before(actor1.name)
         expect(page).to_not have_content(actor2.name)
+        expect(page).to_not have_content(actor4.name)
+      end
+
+      visit "movies/#{movie2.id}"
+      # save_and_open_page
+      expect(page).to have_content("All Actors")
+
+      within "#movie-#{movie2.id}" do
+        expect(page).to have_content(actor2.name)
+        expect(page).to have_content(actor2.age)
+        expect(page).to_not have_content(actor4.name)
+        expect(page).to_not have_content(actor1.name)
+        expect(page).to_not have_content(actor3.name)
       end
     end
 
