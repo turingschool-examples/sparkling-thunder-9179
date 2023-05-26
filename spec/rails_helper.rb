@@ -1,3 +1,14 @@
+def test_data
+  @studio_1 = Studio.create!(name: "Universal Studios", location: "Hollywood")
+  @studio_2 = Studio.create!(name: "MGM", location: "Hollywood")
+
+  @movie_1 = @studio_1.movies.create!(title: "Raiders of the Lost Ark", creation_year: "1981", genre: "Action/Adventure")
+  @movie_2 = @studio_1.movies.create!(title: "Jurassic Park", creation_year: "1993", genre: "Action/Adventure")
+  @movie_3 = @studio_2.movies.create!(title: "Die Another Day", creation_year: "2002", genre: "Action/Adventure")
+  @movie_4 = @studio_2.movies.create!(title: "The Manchurian Candidate", creation_year: "1962", genre: "Action/Adventure")
+  
+end
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
