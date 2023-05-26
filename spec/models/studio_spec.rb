@@ -30,7 +30,7 @@ RSpec.describe Studio, type: :model do
 
   describe "instance methods" do 
     it "actors_worked" do 
-      expect(@studio_1.actors_worked).to eq([@actor_1, @actor_2, @actor_4, @actor_5, @actor_6])
+      expect(@studio_1.actors_worked).to match_array(["#{@actor_1.name}", "#{@actor_2.name}", "#{@actor_4.name}", "#{@actor_5.name}", "#{@actor_6.name}"])
     end
   end
 end
