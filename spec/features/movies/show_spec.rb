@@ -12,6 +12,7 @@ RSpec.describe "Movie Show Page" do
 
     @actor1 = @movie3.actors.create!(name: "Tom Cruise", age: 75)
     @actor2 = @movie3.actors.create!(name: "Wanda", age: 6)
+    @actor3 = @movie4.actors.create!(name: "Johnny Depp", age: 60)
   end
 
   it "shows movies and cast" do
@@ -37,5 +38,38 @@ RSpec.describe "Movie Show Page" do
 
     expect(page).to have_content("Average Age of Cast")
     expect(@movie3.average_actor_age).to eq(40)
+  end
+
+  it "adds actors to cast for movie" do
+    # Story 3
+    # Add an Actor to a Movie
+
+    # As a user,
+    # When I visit a movie show page,
+    # I do not see any actors listed that are not part of the movie
+    # And I see a form to add an actor to this movie
+    # When I fill in the form with the ID of an actor that exists in the database
+    # And I click submit
+    # Then I am redirected back to that movie's show page
+    # And I see the actor's name is now listed
+    # (You do not have to test for a sad path, for example if the id submitted is not an existing actor)
+    
+    visit "/movies/#{@movie4.id}"
+
+    expect(page).to have_content(@actor3.name)
+    expect(page).to_not have_content(@actor1.name)
+    expect(page).to_not have_content(@actor2.name)
+    expect(page).to have_content("Average Age of Cast")
+    expect(@movie4.average_actor_age).to eq(60)
+    expect(page).to have_content("Add Actor to Cast")
+
+    fill_in "Actor", with: "#{@actor1.id}"
+    click_button "Submit"
+    expect(current_path).to eq("/movies/#{@movie4.id}")
+
+    expect(page).to have_content(@actor3.name)
+    expect(page).to have_content(@actor1.name)
+    expect(@actor3.name).to appear_before(@actor1.name)
+    expect(@movie4.average_actor_age).to eq(67)
   end
 end

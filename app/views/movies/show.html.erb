@@ -8,6 +8,13 @@
 <% end %>
 <p>Average Age of Cast: <%= @film.average_actor_age %>
 
+<h3>Add Actor to Cast</h3>
+<%= form_with url: "/movies/#{@film.id}/casts", local: true, method: :post do |f| %>
+  <%= f.label :actor_id, "Actor" %>
+  <%= f.text_field :actor_id%>
+  <%= f.submit "Submit" %>
+<% end %>
+
 
 
 
