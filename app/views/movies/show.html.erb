@@ -1,0 +1,9 @@
+<h3>The Movie You Are Looking At</h3>
+
+<p>Movie Title: <%= @movie.title %></p>
+<p>Year Created: <%= @movie.creation_year %></p>
+<p>Genre: <%= @movie.genre %></p>
+
+<% @movie.alphabetize_actors.each do |actor| %>
+  <p><%= actor.name %></p>
+<% end %>
