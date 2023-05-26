@@ -24,5 +24,12 @@ RSpec.describe '/movies/:id' do
         end
       end
     end
+    
+    it 'displays actors' do 
+      visit "/movies/#{@when_bess_got_in_wrong.id}"
+      within("#actors") do 
+        expect(page).to have_content()
+      end
+    end
   end
 end
