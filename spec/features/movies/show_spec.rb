@@ -45,7 +45,20 @@ RSpec.describe "movies show page", type: :feature do
   
   it "displays an average age of all the movie's actors" do 
     visit "/movies/#{@movie_1.id}"
-
+    
     expect(page).to have_content("Average Actor's Age: #{@movie_1.av_actor_age}")
+  end
+  
+  it "has a form to add actors to the film given an actor's id" do 
+    visit "/movies/#{@movie_1.id}"
+
+    expect(page).to_not have_content("#{@actor_7.name}")
+
+    fill_in "Actor ID:", with: "#{@actor_7.id}"
+    click_button "Submit" 
+
+    expect(current_path).to eq("/movies/#{@movie_1.id}")
+    expect(page).to have_content("#{@actor_7.name}")
+    expect(page).to have_content("#{@actor_7.age}")
   end
 end
