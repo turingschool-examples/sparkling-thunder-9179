@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ActorMovie, type: :model do
   describe "relationships" do
-    it { should have_many(:movies)}
-    it { should have_many(:actors)}
+    it { should belong_to(:movie)}
+    it { should belong_to(:actor)}
   end
 end
