@@ -73,9 +73,17 @@ RSpec.describe "Movies Show Page" do
     visit "/movies/#{@movie_1.id}"
 
     fill_in("Actor ID", with: @actor_3.id)
-    click_button "Sumbit"
+    click_button "Submit"
 
     expect(page).to have_current_path("/movies/#{@movie_1.id}")
     expect(page).to have_content(@actor_3.name)
+    
+    visit "/movies/#{@movie_2.id}"
+
+    fill_in("Actor ID", with: @actor_1.id)
+    click_button "Submit"
+
+    expect(page).to have_current_path("/movies/#{@movie_2.id}")
+    expect(page).to have_content(@actor_1.name)
   end
 end
