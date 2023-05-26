@@ -26,6 +26,7 @@ RSpec.describe "Studio's Index page", type: :feature do
 
     it "displays under studios, all studio's movies, including their title, creation year, genre" do
       visit "/studios"
+      # save_and_open_page
       expect(page).to have_content(movie_1.title)
       expect(page).to have_content(movie_2.creation_year)
       expect(page).to have_content(movie_3.genre)
