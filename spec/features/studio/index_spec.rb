@@ -11,6 +11,14 @@ RSpec.describe "Studio Index" do
   end
 
   it "shows all studios and movies" do
+    # Story 1 - Studio Index
+
+    # As a user,
+    # When I visit the studio index page,
+    # Then I see all of the studios including name and location,
+    # And under each studio I see all of the studio's movies
+    # including the movie's title, creation year, and genre
+
     visit "/studios"
 
     expect(page).to have_content(@studio1.name)
@@ -33,6 +41,5 @@ RSpec.describe "Studio Index" do
     expect(page).to have_content(@movie4.title)
     expect(page).to have_content(@movie4.creation_year)
     expect(page).to have_content(@movie4.genre)
-    save_and_open_page
   end
 end

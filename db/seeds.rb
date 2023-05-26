@@ -13,3 +13,5 @@
 @movie2 = @studio1.movies.create!(title: "Wanda Goes Barking", creation_year: "2023", genre: "puppies")
 @movie3 = @studio2.movies.create!(title: "Wanda VS The Vacuum", creation_year: "2022", genre: "super hero")
 @movie4 = @studio2.movies.create!(title: "Driving I70", creation_year: "2000", genre: "action")
+@actor1 = @movie3.actors.create!(name: "Tom Cruise", age: 75)
+@actor2 = @movie3.actors.create!(name: "Wanda", age: 6)
