@@ -1,8 +1,11 @@
 <h1>Title: <%= @movie.title %> </h1>
-<h2>Year: <%= @movie.title %> | Genre : <%= @movie.genre %> </h2>
-<% @movie.actors.each do |actor| %>
+<h2>Year: <%= @movie.creation_year %> </h2>
+<h3>Genre: <%= @movie.genre %> </h3>
+<h3>Actors: </h3>
+
+<% @movie.order_actor_name.each do |actor| %>
   <ul>
-    <li> <%= actor.name %> | <%= actor.age %> </li>
+    <li> <%= actor.name %>, <%= actor.age %> </li>
   </ul>
 <% end %>
 
