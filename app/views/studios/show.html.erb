@@ -1,0 +1,17 @@
+<h1> Studio Show Page </h1>
+
+<section id="studio-info-">
+<h3> <%= @studio.name %></h3>
+  <p>Location: <%= @studio.location %></p>
+</section>
+
+<section id="actor-info-">
+<h4> All Actors that have worked here </h4>
+  <p><% @studio.movies.each do |movie| %></p>
+  <% movie.actors.each do |actor| %>
+  <ul>
+    <li><%= actor.name %></li>
+  </ul>
+  <% end %>
+  <% end %>
+  </section>
