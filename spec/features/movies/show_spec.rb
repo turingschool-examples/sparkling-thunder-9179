@@ -58,31 +58,31 @@ RSpec.describe '/movies/:id' do
     it 'does not display actors not in a movie' do 
       visit "/movies/#{@when_bess_got_in_wrong.id}" 
       within("#actors") do 
-          expect(page).to_not have_content(@patton.name)
-        end
+        expect(page).to_not have_content(@patton.name)
+      end
     end
     
     it 'adds existing actors to movies' do 
       visit "/movies/#{@when_bess_got_in_wrong.id}"
 
       within ("#add-an-actor") do
-      expect(page).to have_content('Add an Actor')
-      expect(page).to have_button('Submit')
-      expect(page).to have_field(:actor_id)
-      
-      fill_in(:actor_id, with: @stella.id)
-      click_button('Submit')
+        expect(page).to have_content('Add an Actor')
+        expect(page).to have_button('Submit')
+        expect(page).to have_field(:actor_id)
+        
+        fill_in(:actor_id, with: @stella.id)
+        click_button('Submit')
+      end
+    
+      expect(current_path).to eq("/movies/#{@when_bess_got_in_wrong.id}")
+    
+      within("#actors") do 
+        expect(page).to have_content("Stella Adams")
+      end
+    
+      expect(page).to have_content('Average Age of Actors: 25')
     end
-    
-    expect(current_path).to eq("/movies/#{@when_bess_got_in_wrong.id}")
-    
-    within("#actors") do 
-      expect(page).to have_content("Stella Adams")
-    end
-    
-    expect(page).to have_content('Average Age of Actors: 25')
   end
-end
 
 it 'adds actors to other existing movies' do 
   visit "/movies/#{@ratatouille.id}" 
