@@ -18,23 +18,29 @@ RSpec.describe '/index' do
       visit "/studios" 
       expect(page).to have_content("Studios")
       within("#studios") do 
-        expect(page).to have_content(@pixar.name)
-        expect(page).to have_content(@pixar.location)
-        expect(page).to have_content(@ratatouille.title)
-        expect(page).to have_content(@ratatouille.creation_year)
-        expect(page).to have_content(@ratatouille.genre)
-        expect(page).to have_content(@inside_out.title)
-        expect(page).to have_content(@inside_out.creation_year)
-        expect(page).to have_content(@inside_out.genre)
-
-        expect(page).to have_content(@universal.name)
-        expect(page).to have_content(@universal.location)
-        expect(page).to have_content(@the_dawn_of_netta.title)
-        expect(page).to have_content(@the_dawn_of_netta.creation_year)
-        expect(page).to have_content(@the_dawn_of_netta.genre)
-        expect(page).to have_content(@when_bess_got_in_wrong.title)
-        expect(page).to have_content(@when_bess_got_in_wrong.creation_year)
-        expect(page).to have_content(@when_bess_got_in_wrong.genre)
+        within("#studio-#{@pixar.id}") do
+          expect(page).to have_content(@pixar.name)
+          expect(page).to have_content(@pixar.location)
+          expect(page).to have_content(@ratatouille.title)
+          expect(page).to have_content(@ratatouille.creation_year)
+          expect(page).to have_content(@ratatouille.genre)
+          expect(page).to have_content(@inside_out.title)
+          expect(page).to have_content(@inside_out.creation_year)
+          expect(page).to have_content(@inside_out.genre)
+          expect(page).to_not have_content(@when_bess_got_in_wrong.title)
+        end
+        
+        within("#studio-#{@universal.id}") do 
+          expect(page).to have_content(@universal.name)
+          expect(page).to have_content(@universal.location)
+          expect(page).to have_content(@the_dawn_of_netta.title)
+          expect(page).to have_content(@the_dawn_of_netta.creation_year)
+          expect(page).to have_content(@the_dawn_of_netta.genre)
+          expect(page).to have_content(@when_bess_got_in_wrong.title)
+          expect(page).to have_content(@when_bess_got_in_wrong.creation_year)
+          expect(page).to have_content(@when_bess_got_in_wrong.genre)
+          expect(page).to_not have_content(@inside_out.genre)
+        end
       end
     end
   end
