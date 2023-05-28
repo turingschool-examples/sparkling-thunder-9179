@@ -1,3 +1,5 @@
+
+[DB Diagram Table](https://dbdiagram.io/d/645986badca9fb07c4b9e033)
 # Movie Tracker
 
 This repository requires and has been tested on Ruby v3.1.1 and is based on Rails 7.0.4.

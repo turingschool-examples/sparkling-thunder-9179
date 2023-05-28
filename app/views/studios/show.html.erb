@@ -7,11 +7,8 @@
 
 <section id="actor-info-">
 <h4> All Actors that have worked here </h4>
-  <p><% @studio.movies.each do |movie| %></p>
-  <% movie.actors.each do |actor| %>
-  <ul>
-    <li><%= actor.name %></li>
-  </ul>
-  <% end %>
-  <% end %>
+
+  <% @studio.actors_worked.each do |actor| %>
+    <p><%= actor.name %></p>
+  < % end %>
   </section>
