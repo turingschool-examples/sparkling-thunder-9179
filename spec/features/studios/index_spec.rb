@@ -11,7 +11,14 @@ RSpec.describe "/studios", type: :feature do
       @movie_3 = @studio_2.movies.create!(title: "Toy Story", creation_year: "1995", genre: "animation")
       @movie_4 = @studio_2.movies.create!(title: "Inside Out", creation_year: "2015", genre: "animation")
     end
+    
+    # Story 1 - Studio Index
 
+    # As a user,
+    # When I visit the studio index page,
+    # Then I see all of the studios including name and location,
+    # And under each studio I see all of the studio's movies
+    # including the movie's title, creation year, and genre
     it "displays all studios with information includio all movies and their information" do
       visit "/studios"
 
