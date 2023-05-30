@@ -30,5 +30,11 @@ RSpec.describe Movie, type: :model do
         expect(@movie_1.actors_youngest_to_oldest).to eq([@actor_3, @actor_1, @actor_2])
       end
     end
+
+    context "#average" do
+      it "sorts a movies actors by age" do
+        expect(@movie_1.actors_average_age.round(2)).to eq(63.33)
+      end
+    end
   end
 end
