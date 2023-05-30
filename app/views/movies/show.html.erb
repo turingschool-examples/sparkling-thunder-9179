@@ -8,3 +8,12 @@
     </ul>
   <% end %>
 <h4>Average Age: <%= @movie.actors_average_age.round(2) %></h4>
+<h5>Add Actors</h5>
+<%= form_with url: "/movies/#{@movie.id}", method: :post, local: true do |f| %>
+  <%= f.label :actor_id %>
+  <%= f.number_field :actor_id %>
+  <br>
+  <%= f.hidden_field :movie_id, value: @movie.id %>
+  <br>
+  <%= f.submit "Submit" %>
+<% end %>
