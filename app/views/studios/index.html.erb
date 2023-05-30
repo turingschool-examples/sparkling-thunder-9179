@@ -1,0 +1,18 @@
+<h1>Every Studio Everywhere All at Once</h1>
+
+<% @studios.each do |studio| %>
+  <div id="studio-<%= studio.id %>">
+    <h2>Studio Name: <%= studio.name %></h2>
+    <h3>Studio Location: <%= studio.location %></h3>
+    <h4><u>Studio's Movies</u></h4>
+    <% studio.movies.each do |movie| %>
+      <ul>
+        <li><h5>Movie Title: <%= movie.title %></h5></li>
+          <ul>
+            <li>Creation Year: <%= movie.creation_year %></li>
+            <li>Genre: <%= movie.genre %></li>
+          </ul>
+      </ul>
+    <% end %>
+  </div>
+<% end %>
