@@ -1,0 +1,13 @@
+<% @studios.each do |studio| %>
+<p>
+<div id="studio_index_<%= studio.id %>">
+  <h3><%= studio.name %></h3>
+  Location: <%= studio.location %></br>
+    Movies: <% studio.movies.each do |movie| %></br>
+      -Title: <%= movie.title %></br>
+      &nbsp Year: <%= movie.creation_year %></br>
+      &nbsp Genre: <%= movie.genre %>
+    <% end %>
+</div>
+</p>
+<% end %>
