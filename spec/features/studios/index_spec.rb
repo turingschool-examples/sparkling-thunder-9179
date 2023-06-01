@@ -35,6 +35,6 @@ RSpec.describe "Studio index" do
         end
       end
     end
-    save_and_open_page
+    # save_and_open_page
   end
 end
